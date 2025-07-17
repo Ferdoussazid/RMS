@@ -1,9 +1,8 @@
 <template>
-  <div class="flex flex-col w-full min-h-screen">
+  <div class="flex flex-col w-full min-h-screen bg-gray-50">
+    <!-- Toolbar with Dashboard Buttons -->
     <AppToolbar title="Dashboard" :with-site-id="false">
       <template #action>
-
-         <!-- <vc-date-picker  color="indigo" is-range class="mt-1 border-0"> </vc-date-picker> -->
         <NLink to="/dashboard/legacy" v-if="canAccessLegacyDashboard"
           class="flex flex-row items-center space-x-2 rounded bg-blue-500 px-4 py-1.5 text-xs font-medium text-white transition duration-300 hover:bg-blue-600">
           <i class="fas fa-layer-group"></i>
@@ -22,17 +21,22 @@
       </template>
     </AppToolbar>
 
-    <!-- 🟦 Dashboard Content -->
-    <div class="flex flex-col w-full lg:flex-row">
-      <div class="w-full h-[70vh] flex flex-col items-center justify-center space-y-6">
-        <!-- Circular Counter UI -->
-        <div class="w-40 h-40 rounded-full bg-white shadow-md flex items-center justify-center text-4xl font-bold text-gray-700">
-          {{ count }}
-        </div>
-        <div class="space-x-4">
-          <button @click="increment" class="bg-green-500 text-white px-5 py-2 rounded-full hover:bg-green-600 text-lg">+</button>
-          <button @click="decrement" class="bg-red-500 text-white px-5 py-2 rounded-full hover:bg-red-600 text-lg">-</button>
-        </div>
+    <!-- Main Content -->
+    <div class="flex flex-col items-center justify-center flex-grow py-10 space-y-8">
+      <!-- Input field -->
+      <FixedLabelInput v-model="myinput" label="My Level" />
+
+      <!-- Blue-bordered Circle Counter -->
+      <div class="w-48 h-48 rounded-full border-8 border-blue-500 bg-white shadow-xl flex items-center justify-center text-5xl font-bold text-blue-600">
+        {{ count }}
+      </div>
+
+      <!-- Counter Buttons -->
+      <div class="flex space-x-6">
+        <button @click="increment"
+          class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full text-lg font-semibold shadow-md">+</button>
+        <button @click="decrement"
+          class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full text-lg font-semibold shadow-md">-</button>
       </div>
     </div>
   </div>
@@ -46,7 +50,8 @@ export default {
   middleware: ['auth', 'user'],
   data() {
     return {
-      count: 0
+      count: 0,
+      myinput: ''
     }
   },
   computed: {
@@ -54,12 +59,21 @@ export default {
       return this.isSuperAdmin || this.isAdmin || this.isFTB
     }
   },
+  watch: {
+    myinput(newValue) {
+      console.log('Input changed:', newValue)
+    }
+  },
   methods: {
     increment() {
       this.count++
+      this.myinput = this.count.toString()
     },
     decrement() {
-      if (this.count > 0) this.count--
+      if (this.count > 0) {
+        this.count--
+        this.myinput = this.count.toString()
+      }
     }
   }
 }
