@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  app:
+    build: .
+    container_name: rms-ui
+    ports:
+      - "6032:3000"
+    logging:
+      options:
+        max-size: "50M"
+    command:
+      "npm run start"
+      
+networks:
+  default:
+    external:
+      name: dockradar_backend

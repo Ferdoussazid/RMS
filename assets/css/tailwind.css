@@ -1,0 +1,158 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .bg-white {
+    background-color: white;
+  }
+  .bg-white\/80 {
+    background-color: #ffffffcc;
+  }
+  .modal-box {
+    @apply bg-white;
+  }
+  .ease-in-out-reverse {
+    transition-timing-function: cubic-bezier(0.8, 0, 0.6, 1);
+  }
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
+
+  .tooltip {
+    background-color: rgba(0, 0, 0, 0.75);
+    color: white;
+    padding: 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    transition: opacity 0.3s;
+  }
+
+  .tooltip-arrow {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent rgba(0, 0, 0, 0.75) transparent;
+  }
+
+  .group:hover .tooltip {
+    opacity: 1;
+  }
+
+  .gps-ring {
+    color: white;
+    box-shadow: 0 0 2px 0px rgba(255, 0, 0, 0.7);
+    animation: pulsate 1.5s ease-out infinite;
+  }
+
+  .pulse-border::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 38px;
+    height: 38px;
+    border: 3px solid yellow;
+    border-radius: 50%;
+  }
+
+  .text-size-shuffle {
+    position: relative;
+    color: white;
+    animation: text-size-shuffle 1.5s ease-in-out infinite;
+  }
+
+  @keyframes pulsate {
+    0% {
+      box-shadow: 0 0 5px 2px rgba(255, 0, 0, 0.8);
+    }
+    50% {
+      box-shadow: 0 0 10px 5px rgba(255, 0, 0, 1);
+    }
+    100% {
+      box-shadow: 0 0 5px 2px rgba(255, 0, 0, 0.8);
+    }
+  }
+
+  @keyframes text-size-shuffle {
+    0% {
+      font-size: 0.875rem;
+      font-weight: 700;
+    }
+    50% {
+      font-size: 1.4rem;
+      font-weight: 800;
+    }
+    100% {
+      font-size: 0.875rem;
+      font-weight: 700;
+    }
+  }
+
+  @keyframes ping {
+    0% {
+      transform: scale(1);
+      opacity: 0.8;
+    }
+    75% {
+      transform: scale(1.5);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(2);
+      opacity: 0;
+    }
+  }
+
+  .ringing-bell {
+    animation: ring 0.5s ease-in-out infinite;
+  }
+
+  @keyframes ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    20% {
+      transform: rotate(-20deg);
+    }
+    40% {
+      transform: rotate(10deg);
+    }
+    60% {
+      transform: rotate(-10deg);
+    }
+    80% {
+      transform: rotate(5deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+
+  .pulsing-sontainer {
+    animation: pulse-conatainer 1.5s ease-in-out infinite;
+  }
+
+  @keyframes pulse-container {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+}
