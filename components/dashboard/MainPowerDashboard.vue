@@ -75,6 +75,8 @@ export default {
         labels.push('PG ON')
       }
       return labels
+
+    
     },
     chartColors() {
       const colors = []
